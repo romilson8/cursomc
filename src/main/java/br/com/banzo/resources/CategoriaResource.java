@@ -23,6 +23,7 @@ public class CategoriaResource {
 		Categoria cat2 =  new Categoria();
 		cat2.setId(2);
 		cat2.setNome("B");
+		
 		List<Categoria> listaCategorias = new ArrayList<>();
 		listaCategorias.add(cat1);
 		listaCategorias.add(cat2);
