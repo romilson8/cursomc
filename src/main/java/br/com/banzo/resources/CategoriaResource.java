@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.banzo.domain.Categoria;
 import br.com.banzo.services.CategoriaService;
+import javassist.tools.rmi.ObjectNotFoundException;
 
 @RestController
 @RequestMapping("/categorias")
@@ -21,8 +22,6 @@ public class CategoriaResource {
 	public ResponseEntity<?> find(@PathVariable Integer id) {
 		
 		Categoria categoria = categoriaService.buscar(id);
-	
-		
 		return ResponseEntity.ok(categoria);
 	}
 
