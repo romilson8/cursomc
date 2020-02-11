@@ -1,7 +1,8 @@
 package br.com.banzo.domain;
 
+import javax.persistence.Entity;
 
-
+@Entity
 public class Categoria extends AbstractEntity{
 	
 	private String nome;
