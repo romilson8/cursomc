@@ -10,6 +10,8 @@ import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import br.com.banzo.domain.enums.TipoCliente;
 
 @Entity
@@ -23,6 +25,7 @@ public class Cliente extends AbstractEntity {
 	
 	private Integer tipoCliente;
 	
+	@JsonManagedReference
 	@OneToMany(mappedBy="cliente")
 	private List<Endereco> enderecos = new ArrayList<>();
 	
