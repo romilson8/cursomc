@@ -1,6 +1,8 @@
 package br.com.banzo.resources;
 
 import java.net.URI;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import br.com.banzo.domain.Categoria;
+import br.com.banzo.dto.CategoriaDTO;
 import br.com.banzo.services.CategoriaService;
 
 @RestController
@@ -31,6 +34,14 @@ public class CategoriaResource {
 		
 		Categoria categoria = categoriaService.buscar(id);
 		return ResponseEntity.ok(categoria);
+	}
+	
+	@GetMapping
+	public ResponseEntity<List<CategoriaDTO>> findAll(){
+		List<Categoria> categorias = categoriaService.buscarLista();
+		List<CategoriaDTO> categoriasDTO = categorias.stream()
+				.map(obj -> new CategoriaDTO(obj)).collect(Collectors.toList());
+		return ResponseEntity.ok().body(categoriasDTO);
 	}
 	
 	@PostMapping
