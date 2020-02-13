@@ -2,13 +2,13 @@ package br.com.banzo.services;
 
 import java.util.Optional;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import br.com.banzo.domain.Categoria;
 import br.com.banzo.repositories.CategoriaRepository;
+import br.com.banzo.services.exceptions.DataIntegrityException;
 import br.com.banzo.services.exceptions.ObjectNotFoundException;
 
 
@@ -33,6 +33,15 @@ public class CategoriaService {
 	public  Categoria atualizar(Categoria categoria) {
 		buscar(categoria.getId());
 		return categoriaRepository.save(categoria);
+	}
+
+	public void apagar(Integer id) {
+		buscar(id);
+		try {
+			categoriaRepository.deleteById(id);
+		} catch (DataIntegrityViolationException e) {
+			throw new DataIntegrityException("Não é possivel excluir uma categoria que possui produto");
+		}
 	}
 
 
