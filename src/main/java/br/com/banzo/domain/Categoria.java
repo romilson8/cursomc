@@ -6,26 +6,22 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 @Entity
-public class Categoria extends AbstractEntity{
-	
+public class Categoria extends AbstractEntity {
+	private static final long serialVersionUID = 1L;
+
 	private String nome;
-	
-	@JsonManagedReference
-	@ManyToMany(mappedBy="categorias")
+
+	@ManyToMany(mappedBy = "categorias")
 	private List<Produto> produtos = new ArrayList<>();
 
-	
 	public Categoria() {
-		
+
 	}
-	
+
 	public Categoria(String nome) {
 		this.nome = nome;
 	}
-
 
 	public String getNome() {
 		return nome;
@@ -42,6 +38,5 @@ public class Categoria extends AbstractEntity{
 	public void setProdutos(List<Produto> produtos) {
 		this.produtos = produtos;
 	}
-	
 
 }

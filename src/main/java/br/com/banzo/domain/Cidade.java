@@ -4,16 +4,14 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 @Entity
 public class Cidade extends AbstractEntity {
+	private static final long serialVersionUID = 1L;
 
 	private String nome;
-	
-	@JsonManagedReference
+
 	@ManyToOne
-	@JoinColumn(name="estado_id")
+	@JoinColumn(name = "estado_id")
 	private Estado estado;
 
 	public Cidade() {
