@@ -2,6 +2,8 @@ package br.com.banzo.services;
 
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,5 +29,11 @@ public class CategoriaService {
 		categoria.setId(null);
 		return categoriaRepository.save(categoria);
 	}
+
+	public  Categoria atualizar(Categoria categoria) {
+		buscar(categoria.getId());
+		return categoriaRepository.save(categoria);
+	}
+
 
 }
